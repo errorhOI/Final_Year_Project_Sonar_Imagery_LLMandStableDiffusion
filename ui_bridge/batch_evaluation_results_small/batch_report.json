@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-04-13T06:53:42.577741",
+  "test_image_dir": "/content/drive/MyDrive/fyp/test_image",
+  "output_dir": "/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small",
+  "num_images": 8,
+  "num_experiments": 3,
+  "total_completed_runs": 48,
+  "planned_total_runs": 48,
+  "elapsed_seconds": 1528.7786600589752,
+  "baseline": {
+    "preprocess_mode": "brighten",
+    "sdxl_input_mode": "blue_input",
+    "use_negative_prompt": true,
+    "sdxl_strength": 0.47,
+    "sdxl_guidance": 7,
+    "sdxl_steps": 40,
+    "sdxl_seed": 163272,
+    "sdxl_target_long_side": 1024,
+    "sdxl_cn_scale": 1.3,
+    "sdxl_scheduler": "DPM++ 2M Karras"
+  },
+  "experiments": [
+    {
+      "experiment_name": "A_preprocess",
+      "parameter_name": "preprocess_mode",
+      "values": [
+        "raw",
+        "brighten"
+      ]
+    },
+    {
+      "experiment_name": "B_sdxl_input_mode",
+      "parameter_name": "sdxl_input_mode",
+      "values": [
+        "blue_input",
+        "gray_input"
+      ]
+    },
+    {
+      "experiment_name": "C_negative_prompt",
+      "parameter_name": "use_negative_prompt",
+      "values": [
+        true,
+        false
+      ]
+    }
+  ]
+}

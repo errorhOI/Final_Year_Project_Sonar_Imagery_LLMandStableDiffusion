@@ -1,0 +1,1 @@
+distorted structure, changed object identity and lighting, extra parts, deformed hull, broken geometry, duplicated parts

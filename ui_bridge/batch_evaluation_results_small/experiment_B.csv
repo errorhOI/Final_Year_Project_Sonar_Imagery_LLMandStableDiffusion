@@ -1,0 +1,17 @@
+image_id,setting,run_folder,source_image,generated_image,clip_prompt_used,dino_img_img_cosine,clip_img_text_cosine,status
+image1,raw,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image1/preprocess_mode_raw,,,,,,missing_raw_folder
+image1,brighten,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image1/preprocess_mode_brighten,,,,,,missing_brighten_folder
+image2,raw,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image2/preprocess_mode_raw,,,,,,missing_raw_folder
+image2,brighten,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image2/preprocess_mode_brighten,,,,,,missing_brighten_folder
+image3,raw,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image3/preprocess_mode_raw,,,,,,missing_raw_folder
+image3,brighten,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image3/preprocess_mode_brighten,,,,,,missing_brighten_folder
+image4,raw,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image4/preprocess_mode_raw,,,,,,missing_raw_folder
+image4,brighten,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image4/preprocess_mode_brighten,,,,,,missing_brighten_folder
+image5,raw,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image5/preprocess_mode_raw,,,,,,missing_raw_folder
+image5,brighten,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image5/preprocess_mode_brighten,,,,,,missing_brighten_folder
+image6,raw,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image6/preprocess_mode_raw,,,,,,missing_raw_folder
+image6,brighten,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image6/preprocess_mode_brighten,,,,,,missing_brighten_folder
+image7,raw,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image7/preprocess_mode_raw,,,,,,missing_raw_folder
+image7,brighten,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image7/preprocess_mode_brighten,,,,,,missing_brighten_folder
+image8,raw,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image8/preprocess_mode_raw,,,,,,missing_raw_folder
+image8,brighten,/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/B_preprocess/image8/preprocess_mode_brighten,,,,,,missing_brighten_folder

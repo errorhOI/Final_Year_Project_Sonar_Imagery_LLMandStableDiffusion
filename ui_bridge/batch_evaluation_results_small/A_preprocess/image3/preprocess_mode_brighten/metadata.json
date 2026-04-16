@@ -1,0 +1,72 @@
+{
+  "run_id": "20260413_063412_f63455",
+  "timestamp": "2026-04-13T06:34:38.501999",
+  "input_image_path": "/content/drive/MyDrive/fyp/test_image/image3.jpg",
+  "experiment_name": "A_preprocess",
+  "parameter_name": "preprocess_mode",
+  "parameter_value": "brighten",
+  "baseline": {
+    "preprocess_mode": "brighten",
+    "sdxl_input_mode": "blue_input",
+    "use_negative_prompt": true,
+    "sdxl_strength": 0.47,
+    "sdxl_guidance": 7,
+    "sdxl_steps": 40,
+    "sdxl_seed": 163272,
+    "sdxl_target_long_side": 1024,
+    "sdxl_cn_scale": 1.3,
+    "sdxl_scheduler": "DPM++ 2M Karras"
+  },
+  "effective_config": {
+    "preprocess_mode": "brighten",
+    "sdxl_input_mode": "blue_input",
+    "use_negative_prompt": true,
+    "sdxl_strength": 0.47,
+    "sdxl_guidance": 7,
+    "sdxl_steps": 40,
+    "sdxl_seed": 163272,
+    "sdxl_target_long_side": 1024,
+    "sdxl_cn_scale": 1.3,
+    "sdxl_scheduler": "DPM++ 2M Karras"
+  },
+  "models": {
+    "qwen_vl_model": "Qwen/Qwen3-VL-8B-Instruct",
+    "sd_model": "RunDiffusion/Juggernaut-XL-v9",
+    "controlnet_model": "/content/drive/MyDrive/fyp/fyp_saved_models/controlnet_sdxl_out",
+    "yolo_seg_weights": "/content/drive/MyDrive/fyp/yolo_weights/train3/best.pt"
+  },
+  "qwen": {
+    "seed": 700993,
+    "image_side": 768,
+    "max_tokens": 140
+  },
+  "sdxl": {
+    "seed": 163272,
+    "strength": 0.47,
+    "guidance_scale": 7.0,
+    "steps": 40,
+    "target_long_side": 1024,
+    "controlnet_scale": 1.3,
+    "scheduler": "DPM++ 2M Karras",
+    "input_mode": "blue_input",
+    "use_negative_prompt": true
+  },
+  "preprocess_mode": "brighten",
+  "canny": {
+    "low": 90,
+    "high": 240,
+    "auto_stats": {
+      "best_score": 0.09849740093483836
+    }
+  },
+  "saved_files": {
+    "raw_input": "/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/A_preprocess/image3/preprocess_mode_brighten/01_raw_input.png",
+    "preprocessed_raw": "/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/A_preprocess/image3/preprocess_mode_brighten/02_preprocessed_raw.png",
+    "cutout_preview": "/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/A_preprocess/image3/preprocess_mode_brighten/03_cutout_preview.png",
+    "sdxl_init_input": "/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/A_preprocess/image3/preprocess_mode_brighten/04_sdxl_init_input.png",
+    "canny_control": "/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/A_preprocess/image3/preprocess_mode_brighten/05_canny_control.png",
+    "final_output": "/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/A_preprocess/image3/preprocess_mode_brighten/06_final_output.png",
+    "qwen_prompt": "/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/A_preprocess/image3/preprocess_mode_brighten/qwen_prompt.txt",
+    "used_sdxl_prompt": "/content/drive/MyDrive/fyp/ui_bridge/batch_evaluation_results_small/A_preprocess/image3/preprocess_mode_brighten/used_sdxl_prompt.txt"
+  }
+}
