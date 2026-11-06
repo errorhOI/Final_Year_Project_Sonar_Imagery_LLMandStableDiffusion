@@ -1,84 +1,81 @@
-# Sonar Image Enhancement and 3D Visualization Using Stable Diffusion XL and DAv3
+# Sonar Imagery Enhancement and 3D Visualisation
 
-## Overview
-This Final Year Project focuses on enhancing noisy sonar images into clearer and more meaningful visual outputs using AI-based image generation and image processing techniques. The project also explores 3D visualization by estimating depth information from the enhanced image results.
+A final-year research project exploring how vision-language models, Stable Diffusion XL, and depth estimation can make noisy sonar imagery easier to interpret. The workflow investigates generated visual enhancements, alternative views, and depth-based 3D visualisations.
 
-The main purpose of this project is to improve the interpretability of sonar imagery while preserving the original object structure, silhouette, and viewpoint as much as possible. The system combines preprocessing, Stable Diffusion XL img2img enhancement, multi-view generation, and DAv3-based depth estimation for visualization.
+**Focus:** generative AI · computer vision · experimental evaluation · 3D visualisation
 
-## Objectives
-- Enhance noisy sonar images into clearer visual representations.
-- Preserve object shape, silhouette, and structural consistency during enhancement.
-- Explore denoising and multi-view generation techniques for improved visualization.
-- Generate depth-based 3D visualization from enhanced sonar images.
-- Evaluate the similarity and quality of the generated outputs.
+**[Explore the experiments](ui_bridge/batch_evaluation_results_small)** · **[View 3D exports](ui_bridge/da3_exports)** · **[Inspect test images](test_image)**
 
-## Problem Statement
-Raw sonar images are often noisy, unclear, and difficult for humans to interpret. Traditional image enhancement methods may improve visibility, but they often fail to preserve meaningful structure or support downstream 3D interpretation. This project addresses this issue by using AI-based diffusion and image processing methods to enhance sonar images while maintaining structural consistency for visualization purposes.
+## Visual example
 
-## Scope
-This project includes:
-- Sonar image preprocessing
-- Image enhancement using Stable Diffusion XL img2img
-- Denoising and structure preservation
-- Multi-view image generation
-- Depth estimation using DAv3
-- Depth-based 3D visualization
-- Evaluation of enhanced image quality and similarity
+The input and generated output below come from the same saved experiment (`image1`, raw preprocessing).
 
-This project does not focus on fully accurate engineering-grade 3D reconstruction, but rather on improving visual understanding and structural interpretation from sonar imagery.
+| Sonar input | Generated visualisation |
+| --- | --- |
+| ![Raw sonar input](ui_bridge/batch_evaluation_results_small/A_preprocess/image1/preprocess_mode_raw/01_raw_input.png) | ![SDXL generated visualisation](ui_bridge/batch_evaluation_results_small/A_preprocess/image1/preprocess_mode_raw/06_final_output.png) |
 
-## Methodology
-The overall workflow of the project is as follows:
+Generated details are model interpretations. They should not be treated as verified observations of the underwater object or as survey-grade geometry.
 
-1. **Input Sonar Image**  
-   A raw sonar image is provided as the input.
+## Problem and approach
 
-2. **Preprocessing**  
-   Image preprocessing is applied to prepare the sonar image for enhancement. This may include resizing, denoising, brightness adjustment, masking, and color adaptation.
+Sonar images can be difficult to interpret because of noise, limited texture, and ambiguous object boundaries. This project explores whether preprocessing, language-guided image generation, and depth estimation can produce more accessible visual representations while retaining useful structural cues.
 
-3. **Image Enhancement**  
-   Stable Diffusion XL img2img is used to generate a clearer and more visually meaningful version of the sonar image while attempting to preserve the original structure.
+```text
+Sonar image → Preprocessing / object cutout → Vision-language prompt
+                         ↓                           ↓
+                  Canny edge guidance → SDXL image generation
+                                                   ↓
+                                  Alternative-view experiments
+                                                   ↓
+                                     Depth / 3D visualisation
+```
 
-4. **Multi-View Generation**  
-   Additional views are generated to improve the visualization of the detected object from different angles.
+The saved run metadata identifies Qwen3-VL-8B-Instruct for visual prompting and Juggernaut-XL-v9 as the SDXL model. It also records a custom ControlNet path and YOLO segmentation weights. The project documentation describes DAv3-based depth estimation, with scene, depth, and geometry exports available here.
 
-5. **Depth Estimation**  
-   DAv3 is used to estimate depth from the enhanced image.
+## Experimental evidence
 
-6. **3D Visualization**  
-   The estimated depth is used to generate a point cloud or depth-based 3D visualization.
+The saved [batch report](ui_bridge/batch_evaluation_results_small/batch_report.json) records **48 completed runs across 8 test images**, comparing three factors with two settings each:
 
-7. **Evaluation**  
-   The outputs are evaluated based on similarity, structural preservation, and visual quality.
+| Experiment | Comparison | Evaluation file |
+| --- | --- | --- |
+| A — preprocessing | Raw input vs brightened input | [Results](ui_bridge/batch_evaluation_results_small/experiment_A_raw_vs_brighten_evaluation.csv) |
+| B — SDXL input | Blue input vs grayscale input | [Results](ui_bridge/batch_evaluation_results_small/experiment_B_evaluation.csv) |
+| C — negative prompt | Enabled vs disabled | [Results](ui_bridge/batch_evaluation_results_small/experiment_C_negative_prompt_evaluation.csv) |
 
-## Technologies Used
-- Python
-- Stable Diffusion XL (img2img)
-- DAv3
-- OpenCV
-- PyTorch
-- Gradio
-- Google Colab
-- GitHub
+The evaluation CSVs contain DINO image-to-image cosine similarity and CLIP image-to-text cosine similarity. These measure representation similarity and prompt alignment, rather than detection accuracy or geometrically correct reconstruction.
 
-## Features
-- Sonar image enhancement
-- Denoising and preprocessing pipeline
-- Structure-preserving image generation
-- Multi-view generation
-- Depth estimation for visualization
-- 3D point cloud visualization
-- Interactive interface for image processing
+A separate [alternative-view experiment](multi_view_negative_prompt_experiment) compares generation with and without negative prompts. Its [evaluation CSV](multi_view_negative_prompt_experiment/multi_view_negative_prompt_evaluation.csv) includes prompts, generation settings, timings, and similarity scores.
 
-## Results
-The project produced enhanced sonar image outputs with improved visual clarity and depth-based visualization support. In one experimental setup, the enhancement pipeline achieved **46% similarity across 4 test images**.
+### Recorded baseline settings
 
-## Sample Results
+The batch report records SDXL strength `0.47`, guidance scale `7`, `40` steps, seed `163272`, a target long side of `1024`, ControlNet scale `1.3`, and the `DPM++ 2M Karras` scheduler. Individual run folders include effective settings, prompts, intermediate images, and final output.
 
-This section shows an example of the original sonar input image and the final enhanced output generated by the system.
+## Repository guide
 
-### Input Sonar Image
-![Input Sonar Image](test_image/image1.png)
+| Location | Contents |
+| --- | --- |
+| [`test_image/`](test_image) | Eight input sonar images. |
+| [`ui_bridge/batch_evaluation_results_small/`](ui_bridge/batch_evaluation_results_small) | Experiment outputs, intermediate images, prompts, metadata, and evaluation CSVs. |
+| [`multi_view_negative_prompt_experiment/`](multi_view_negative_prompt_experiment) | Alternative-view examples and negative-prompt comparisons. |
+| [`ui_bridge/sdxl_final_output/`](ui_bridge/sdxl_final_output) | Selected final image outputs. |
+| [`ui_bridge/da3_exports/`](ui_bridge/da3_exports) | Scenes, depth previews, `.glb` geometry, and `.npz` data. |
 
-### Enhanced Output Image
-![Enhanced Output Image](ui_bridge/sdxl_final_output/sdxl_final_output_6aa28538.png)
+## How to review the work
+
+1. Compare an experiment folder's `01_raw_input.png`, `05_canny_control.png`, and `06_final_output.png` to see how the generated image relates to its input and edge guidance.
+2. Read its `metadata.json`, `qwen_prompt.txt`, and `used_sdxl_prompt.txt` to inspect the recorded settings and prompts.
+3. Use the linked CSVs to compare settings across images, rather than judging only the selected example above.
+4. Open a scene's `depth_vis/0000.jpg` and `scene.jpg` under `ui_bridge/da3_exports/`, or download its `scene.glb` for a compatible 3D viewer.
+
+## Reproducibility and limitations
+
+This repository publishes **research outputs and experiment records**. It does not contain the Python source, notebooks, environment specification, or custom model weights needed to rerun the pipeline. Paths beginning with `/content/drive/` in the metadata refer to the original Google Colab environment.
+
+- Eight test images provide a small exploratory sample; these results do not establish general performance on other sonar datasets.
+- Diffusion-generated images and alternative views can introduce plausible but unsupported details.
+- Depth estimates derived from generated images are exploratory visualisations, not validated metric reconstructions.
+- The saved settings help explain individual runs, but full reproduction requires the missing implementation, dependencies, and model assets.
+
+## Project context
+
+Final-year project by **Hoi Wen Han**, Raffles University. The documented workflow uses Python, PyTorch, OpenCV, Stable Diffusion XL, vision-language prompting, Gradio, Google Colab, and DAv3-based depth estimation.
